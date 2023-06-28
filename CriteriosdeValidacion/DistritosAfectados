@@ -1,0 +1,45 @@
+Feature:  Encontrar distritos afectados por desastres naturales
+
+Como usuario quiero conocer cuáles distritos han sido afectados por desastres naturales  para conocer su situación
+
+@DistritosAfectados
+Scenario: Usuario delimita un radio de búsqueda de distritos en el mapa móvil 
+Given que el usuario desea conocer cuántos distritos afectados hay a su alrededor
+When el usuario delimite el rango de búsqueda a un radio de 5 km
+Then debería visualizar los siguientes distritos afectados y no afectados en su entorno
+
+Examples:
+  [  Distrito     ][   Estado     ]
+  | Miraflores     | Afectado    |
+  | San Isidro     | No Afectado |
+  | Barranco       | Afectado    |
+  | Surco          | No Afectado |
+
+@DistritosAfectados
+Scenario: Usuario delimita un radio de búsqueda de distritos en el mapa móvil 
+Given el usuario desea conocer cuántos distritos afectados hay a su alrededor
+When el usuario delimite el rango de búsqueda a un radio de 10 km
+Then debería visualizar los siguientes distritos afectados y no afectados en su entorno
+
+Examples:
+  [  Distrito     ][   Estado     ]
+  | Miraflores     | No Afectado |
+  | San Isidro     | Afectado    |
+  | Barranco       | No Afectado |
+  | Surco          | Afectado    |
+
+  @DistritosAfectados
+  ScenarioOutline: Usuario delimita un radio de búsqueda de distritos en el mapa móvil
+  Given el usuario desea conocer cuántos distritos afectados hay a su alrededor
+  When el usuario delimite el rango de búsqueda a un radio de <radio> km
+  Then debería visualizar los siguientes resultados
+
+  Examples:
+  [  Distrito     ][   Estado     ]
+    | <distrito1> | <estado1> |
+    | <distrito2> | <estado2> |
+    | <distrito3> | <estado3> |
+
+    | radio | distrito1   | estado1     | distrito2   | estado2     | distrito3   | estado3     |
+    | 5     | Miraflores  | Afectado    | San Isidro  | No Afectado | -           | -           |
+    | 10    | Barranco    | Afectado    | Chorrillos  | Afectado    | La Molina   | No afectado|

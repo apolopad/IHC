@@ -1,0 +1,44 @@
+Feature: Visualizar fotos sobre un desastre natural cercano
+
+Como usuario quiero ver fotos y videos del desastre natural para conocer la gravedad del acontecimiento
+
+@VisualizacionContenidoMultimedia
+  Scenario: Usuario visualiza videos y fotos verídicos del desastre natural
+    Given el usuario no encuentra contenido audiovisual inmediato de un desastre natural
+    When el usuario presione el botón "Contenido multimedia"
+    And seleccione el filtro "fotos"
+    Then se mostrará el contenido fotográfico del desastre seleccionado
+
+    When el usuario presione el botón "Contenido multimedia"
+    And seleccione el filtro "videos"
+    Then se mostrará el contenido de videos del desastre seleccionado
+
+  Examples:
+    | Filtro  |
+    | Fotos   |
+    | Videos  |
+
+ @VisualizacionContenidoMultimedia
+  Scenario: Usuario no encuentra contenido multimedia disponible
+    Given el usuario está buscando contenido audiovisual de un desastre natural
+    When el usuario presione el botón "Contenido multimedia"
+    Then se mostrará un mensaje informativo
+
+  Examples:
+    | Mensaje                                            |
+    | No se encontró contenido multimedia disponible     |
+    | Actualmente no hay fotos o videos disponibles      |
+    | No se han registrado imágenes o videos del desastre |
+
+ @VisualizacionContenidoMultimedia
+  ScenarioOutline: Usuario visualiza contenido multimedia filtrado por tipo de desastre
+    Given el usuario está en la página de visualización de contenido multimedia
+    When el usuario selecciona el filtro "<tipo_desastre>"
+    Then se mostrará el contenido multimedia relacionado con el tipo de desastre seleccionado
+
+  Examples:
+    | tipo_desastre  |
+    | incendio       |
+    | terremoto      |
+    | inundación     |
+

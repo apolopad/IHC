@@ -1,0 +1,42 @@
+Feature: Conocer rutas alternas de un distrito
+
+  Como usuario quiero prever rutas alternas de un distrito para evitar un accidente o congestionamientos.
+
+  @RutasAlternas
+    Scenario: El usuario visualiza una red de caminos alternos de un distrito
+      Given el usuario quiere evitar accidentes o congestionamientos
+      When el usuario presione el botón "Rutas Alternas"
+      And analice la mejor ruta alterna
+      Then podrá rodear el distrito evitando accidentes por el desastre natural o congestionamiento.
+
+    Examples:
+      | distrito | mejor_ruta |
+      | Miraflores | Av. Cantuarias |
+      | San Isidro | Av. Salaverry |
+      | Barranco | Jr. Parque Alto |
+
+  @RutasAlternas
+    Scenario: El usuario busca una ruta alterna específica de un distrito
+      Given el usuario quiere evitar accidentes o congestionamientos
+      And tiene la opción de buscar una ruta alterna específica
+      When el usuario ingresa el nombre del distrito y la ruta deseada
+      Then se mostrará la ruta alterna específica para el distrito solicitado
+
+    Examples:
+      | distrito   | ruta_deseada | ruta_alterna |
+      | Distrito A | Ruta 1       | Ruta X       |
+      | Distrito B | Ruta 2       | Ruta Y       |
+      | Distrito C | Ruta 3       | Ruta Z       |
+
+  @RutasAlternas
+    ScenarioOutline: El usuario busca una ruta alterna específica de un distrito
+      Given el usuario quiere evitar accidentes o congestionamientos
+      And tiene la opción de buscar una ruta alterna específica
+      When el usuario ingresa el nombre del distrito "<distrito>" y la ruta deseada "<ruta_deseada>"
+      Then se mostrará la ruta alterna específica para el distrito solicitado "<ruta_alterna>"
+
+    Examples:
+     | distrito   | ruta_deseada | ruta_alterna |
+     | Distrito A | Ruta 1       | Ruta X       |
+     | Distrito B | Ruta 2       | Ruta Y       |
+     | Distrito C | Ruta 3       | Ruta Z       |
